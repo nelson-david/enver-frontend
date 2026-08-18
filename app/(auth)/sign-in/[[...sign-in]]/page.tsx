@@ -1,4 +1,5 @@
 import { SignIn } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export default function SignInPage() {
     return (
@@ -10,6 +11,7 @@ export default function SignInPage() {
             </div> */}
             <SignIn
                 appearance={{
+                    theme: dark,
                     elements: {
                         card: "bg-zinc-900/90 border border-zinc-800 backdrop-blur-xl shadow-2xl rounded-2xl",
                         headerTitle: "text-zinc-100 font-dm-sans font-semibold",
