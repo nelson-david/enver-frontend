@@ -131,7 +131,7 @@ export default function TokenSettingsPage() {
         mutationFn: async (payload: {
             name: string;
             ttlDays: number | null;
-            scope: string;
+            scopes: string[];
         }) => {
             const token = await getToken();
             return tokenService.createToken(payload, token);
@@ -174,7 +174,7 @@ export default function TokenSettingsPage() {
         createMutation.mutate({
             name: tokenName.trim(),
             ttlDays,
-            scope: selectedScope,
+            scopes: [selectedScope],
         });
     };
 

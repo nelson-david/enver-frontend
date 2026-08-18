@@ -12,6 +12,7 @@ export interface ApiTokenMetadata {
 export interface CreateTokenPayload {
     name: string;
     ttlDays: number | null;
+    scopes: string[];
 }
 
 export interface CreateTokenResponse {
@@ -22,6 +23,7 @@ export interface CreateTokenResponse {
         rawToken: string;
         expiresAt: string | null;
         displayPrefix: string;
+        scopes: string[];
     };
 }
 

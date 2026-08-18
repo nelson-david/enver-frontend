@@ -146,11 +146,11 @@ export default function OnboardingPage() {
                 className="w-full max-w-lg relative z-10"
             >
                 {/* Brand Header */}
-                <div className="flex items-center justify-center gap-2 mb-8">
+                {/* <div className="flex items-center justify-center gap-2 mb-8">
                     <span className="text-2xl font-bold text-white tracking-tight font-dm-sams">
                         Enver
                     </span>
-                </div>
+                </div> */}
 
                 {/* Main Card */}
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-8 backdrop-blur-xl shadow-2xl">
