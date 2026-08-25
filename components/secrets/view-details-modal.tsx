@@ -152,7 +152,7 @@ export function ViewDetailsModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-            <DialogContent className="sm:max-w-[600px] bg-[#09090b] border-zinc-800/80 text-zinc-100 p-0 overflow-hidden">
+            <DialogContent className="sm:max-w-150 bg-[#09090b] border-zinc-800/80 text-zinc-100 p-0 overflow-hidden">
                 <div className="p-6 border-b border-zinc-800/50">
                     <DialogHeader>
                         <DialogTitle className="text-xl font-semibold flex items-center gap-3">
@@ -235,7 +235,7 @@ export function ViewDetailsModal({
                                 value={newMemberRole}
                                 onValueChange={setNewMemberRole}
                             >
-                                <SelectTrigger className="w-[120px] bg-zinc-900/50 border-zinc-800 text-zinc-100">
+                                <SelectTrigger className="w-30 bg-zinc-900/50 border-zinc-800 text-zinc-100">
                                     <SelectValue placeholder="Role" />
                                 </SelectTrigger>
                                 <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-100">

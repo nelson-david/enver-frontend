@@ -16,8 +16,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Enver - Secrets Management",
-    description: "Manage and deploy environment variables securely.",
+    title: "Enver — Zero-Knowledge Secrets Management",
+    description:
+        "Securely manage environment variables across your team with zero-knowledge encryption, CLI-first workflow, and real-time leakage detection.",
+    keywords: [
+        "secrets management",
+        "environment variables",
+        "zero knowledge",
+        "Shamir secret sharing",
+        "developer tools",
+    ],
+    openGraph: {
+        title: "Enver — Zero-Knowledge Secrets Management",
+        description:
+            "Securely manage environment variables with zero-knowledge encryption and a CLI-first workflow.",
+        url: "https://app.enver-os.xyz",
+        siteName: "Enver",
+        type: "website",
+        images: ["/images/og-image.png"],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Enver — Zero-Knowledge Secrets Management",
+        description:
+            "Securely manage environment variables with zero-knowledge encryption and a CLI-first workflow.",
+        images: ["/images/og-image-twitter.png"],
+    },
+    icons: {
+        icon: "/favicon.svg",
+        shortcut: "/favicon.svg",
+        apple: "/white-logo.svg",
+    },
 };
 
 export default function RootLayout({
@@ -48,4 +77,3 @@ export default function RootLayout({
         </ClerkProvider>
     );
 }
-

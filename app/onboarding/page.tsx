@@ -254,7 +254,7 @@ export default function OnboardingPage() {
                                             </Avatar>
                                             {isSelected && (
                                                 <div className="absolute inset-0 bg-blue-600/30 backdrop-blur-[1px] flex items-center justify-center">
-                                                    <Check className="h-4 w-4 text-white stroke-[3]" />
+                                                    <Check className="h-4 w-4 text-white stroke-3" />
                                                 </div>
                                             )}
                                         </button>
