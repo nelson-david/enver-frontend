@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://enver-os.xyz"),
     title: "Enver — Zero-Knowledge Secrets Management",
     description:
         "Securely manage environment variables across your team with zero-knowledge encryption, CLI-first workflow, and real-time leakage detection.",
