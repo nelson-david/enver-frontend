@@ -46,7 +46,7 @@ export default function AuthCallbackPage() {
     }, [isLoaded, isSignedIn, user, router]);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#050505] p-4 text-center">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-bg-base p-4 text-center">
             {error ? (
                 <div className="max-w-md p-6 rounded-2xl border border-red-500/20 bg-red-500/10 text-red-400">
                     <p className="font-semibold text-lg mb-2">Authentication Error</p>
@@ -60,14 +60,14 @@ export default function AuthCallbackPage() {
                 </div>
             ) : (
                 <div className="flex flex-col items-center gap-4">
-                    <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 shadow-xl">
-                        <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
+                    <div className="p-4 rounded-2xl bg-bg-subtle border border-border-subtle shadow-xl">
+                        <Loader2 className="h-8 w-8 text-accent-emerald animate-spin" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-semibold text-white font-dm-sans">
+                        <h2 className="text-xl font-semibold text-text-primary font-dm-sans">
                             Verifying your account...
                         </h2>
-                        <p className="text-sm text-zinc-400 mt-1 font-dm-sans">
+                        <p className="text-sm text-text-secondary mt-1 font-dm-sans">
                             Checking database profile
                         </p>
                     </div>

@@ -152,12 +152,12 @@ export function ViewDetailsModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-            <DialogContent className="sm:max-w-150 bg-[#09090b] border-zinc-800/80 text-zinc-100 p-0 overflow-hidden">
-                <div className="p-6 border-b border-zinc-800/50">
+            <DialogContent className="sm:max-w-150 bg-bg-base border-border-subtle text-text-primary p-0 overflow-hidden">
+                <div className="p-6 border-b border-border-subtle">
                     <DialogHeader>
                         <DialogTitle className="text-xl font-semibold flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/50 border border-zinc-700/50">
-                                <FolderOpen className="h-5 w-5 text-zinc-400" />
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bg-card/50 border border-border-subtle">
+                                <FolderOpen className="h-5 w-5 text-text-secondary" />
                             </div>
                             <div>
                                 <div className="flex items-center gap-3">
@@ -171,7 +171,7 @@ export function ViewDetailsModal({
                                         {secret.environment}
                                     </Badge>
                                 </div>
-                                <DialogDescription className="text-zinc-500 mt-1">
+                                <DialogDescription className="text-text-muted mt-1">
                                     End-to-End Encrypted Vault Details
                                 </DialogDescription>
                             </div>
@@ -182,24 +182,24 @@ export function ViewDetailsModal({
                 <div className="p-6 space-y-8 max-h-[60vh] overflow-y-auto">
                     {/* Environment Details */}
                     <div className="space-y-4">
-                        <h3 className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                        <h3 className="text-sm font-medium text-text-secondary flex items-center gap-2">
                             <Key className="h-4 w-4" />
                             Environment Details
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="rounded-lg border border-zinc-800/50 bg-zinc-900/30 p-4">
-                                <p className="text-xs text-zinc-500 mb-1">
+                            <div className="rounded-lg border border-border-subtle bg-bg-subtle/30 p-4">
+                                <p className="text-xs text-text-muted mb-1">
                                     Total Shares
                                 </p>
-                                <p className="text-lg font-mono text-zinc-200">
+                                <p className="text-lg font-mono text-text-primary">
                                     {secret.sharesCount}
                                 </p>
                             </div>
-                            <div className="rounded-lg border border-zinc-800/50 bg-zinc-900/30 p-4">
-                                <p className="text-xs text-zinc-500 mb-1">
+                            <div className="rounded-lg border border-border-subtle bg-bg-subtle/30 p-4">
+                                <p className="text-xs text-text-muted mb-1">
                                     Last Updated
                                 </p>
-                                <p className="text-sm text-zinc-200">
+                                <p className="text-sm text-text-primary">
                                     {new Date(
                                         secret.updatedAt,
                                     ).toLocaleDateString("en-US", {
@@ -216,7 +216,7 @@ export function ViewDetailsModal({
 
                     {/* Team Members */}
                     <div className="space-y-4">
-                        <h3 className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                        <h3 className="text-sm font-medium text-text-secondary flex items-center gap-2">
                             <Shield className="h-4 w-4" />
                             Project Members
                         </h3>
@@ -229,16 +229,16 @@ export function ViewDetailsModal({
                                 onChange={(e) =>
                                     setNewMemberEmail(e.target.value)
                                 }
-                                className="bg-zinc-900/50 border-zinc-800 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-blue-600 flex-1"
+                                className="bg-bg-subtle/50 border-border-subtle text-text-primary placeholder:text-text-muted focus-visible:ring-accent-emerald flex-1"
                             />
                             <Select
                                 value={newMemberRole}
                                 onValueChange={setNewMemberRole}
                             >
-                                <SelectTrigger className="w-30 bg-zinc-900/50 border-zinc-800 text-zinc-100">
+                                <SelectTrigger className="w-30 bg-bg-subtle/50 border-border-subtle text-text-primary">
                                     <SelectValue placeholder="Role" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
+                                <SelectContent className="bg-bg-subtle border-border-subtle text-text-primary">
                                     <SelectItem value="member">
                                         Member
                                     </SelectItem>
@@ -251,7 +251,7 @@ export function ViewDetailsModal({
                                     !newMemberEmail ||
                                     addMemberMutation.isPending
                                 }
-                                className="bg-blue-600 hover:bg-blue-500 text-white"
+                                className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary shadow-lg shadow-accent-emerald-strong/20"
                             >
                                 {addMemberMutation.isPending ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -262,24 +262,24 @@ export function ViewDetailsModal({
                         </div>
 
                         {/* Members List */}
-                        <div className="rounded-lg border border-zinc-800/50 bg-zinc-900/30 overflow-hidden">
+                        <div className="rounded-lg border border-border-subtle bg-bg-subtle/30 overflow-hidden">
                             {isLoadingMembers ? (
                                 <div className="p-8 flex justify-center">
-                                    <Loader2 className="h-6 w-6 text-blue-500 animate-spin" />
+                                    <Loader2 className="h-6 w-6 text-accent-emerald animate-spin" />
                                 </div>
                             ) : members.length === 0 ? (
-                                <div className="p-8 text-center text-zinc-500 text-sm">
+                                <div className="p-8 text-center text-text-muted text-sm">
                                     No members found.
                                 </div>
                             ) : (
-                                <div className="divide-y divide-zinc-800/50">
+                                <div className="divide-y divide-border-subtle">
                                     {members.map((member) => (
                                         <div
                                             key={member.id}
                                             className="flex items-center justify-between p-4"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <Avatar className="h-8 w-8 border border-zinc-700">
+                                                <Avatar className="h-8 w-8 border border-border-subtle">
                                                     {member.imageUrl ? (
                                                         <AvatarImage
                                                             src={
@@ -287,7 +287,7 @@ export function ViewDetailsModal({
                                                             }
                                                         />
                                                     ) : null}
-                                                    <AvatarFallback className="bg-zinc-800 text-zinc-300 text-xs uppercase">
+                                                    <AvatarFallback className="bg-bg-card text-text-secondary text-xs uppercase">
                                                         {member.name
                                                             ? member.name.substring(
                                                                   0,
@@ -297,19 +297,19 @@ export function ViewDetailsModal({
                                                     </AvatarFallback>
                                                 </Avatar>
                                                 <div>
-                                                    <p className="text-sm font-medium text-zinc-200">
+                                                    <p className="text-sm font-medium text-text-primary">
                                                         {member.name ||
                                                             "Unknown User"}
                                                         {member.isOwner && (
                                                             <Badge
                                                                 variant="outline"
-                                                                className="ml-2 text-[10px] border-blue-900/50 text-blue-400 bg-blue-950/20"
+                                                                className="ml-2 text-[10px] border-accent-emerald/40 text-accent-mint bg-accent-emerald/15"
                                                             >
                                                                 Owner
                                                             </Badge>
                                                         )}
                                                     </p>
-                                                    <p className="text-xs text-zinc-500">
+                                                    <p className="text-xs text-text-muted">
                                                         {member.email}
                                                     </p>
                                                 </div>
@@ -317,7 +317,7 @@ export function ViewDetailsModal({
                                             <div className="flex items-center gap-3">
                                                 <Badge
                                                     variant="outline"
-                                                    className="text-[10px] uppercase border-zinc-700 text-zinc-400"
+                                                    className="text-[10px] uppercase border-border-subtle text-text-secondary"
                                                 >
                                                     {member.role}
                                                 </Badge>
@@ -333,7 +333,7 @@ export function ViewDetailsModal({
                                                         disabled={
                                                             removeMemberMutation.isPending
                                                         }
-                                                        className="h-8 w-8 text-zinc-500 hover:text-red-400 hover:bg-red-950/20"
+                                                        className="h-8 w-8 text-text-muted hover:text-red-400 hover:bg-red-950/20"
                                                     >
                                                         {removeMemberMutation.isPending ? (
                                                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -352,33 +352,33 @@ export function ViewDetailsModal({
 
                     {/* Activity Logs */}
                     <div className="space-y-4">
-                        <h3 className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                        <h3 className="text-sm font-medium text-text-secondary flex items-center gap-2">
                             <Activity className="h-4 w-4" />
                             Activity Logs
                         </h3>
-                        <div className="rounded-lg border border-zinc-800/50 bg-zinc-900/30 overflow-hidden">
+                        <div className="rounded-lg border border-border-subtle bg-bg-subtle/30 overflow-hidden">
                             {isLoadingActivities ? (
                                 <div className="p-8 flex justify-center">
-                                    <Loader2 className="h-6 w-6 text-blue-500 animate-spin" />
+                                    <Loader2 className="h-6 w-6 text-accent-emerald animate-spin" />
                                 </div>
                             ) : activities.length === 0 ? (
-                                <div className="p-8 text-center text-zinc-500 text-sm">
+                                <div className="p-8 text-center text-text-muted text-sm">
                                     No activity logs found.
                                 </div>
                             ) : (
-                                <div className="divide-y divide-zinc-800/50">
+                                <div className="divide-y divide-border-subtle">
                                     {activities.map((log) => (
                                         <div
                                             key={log.id}
                                             className="flex items-start gap-3 p-4"
                                         >
-                                            <Avatar className="h-8 w-8 border border-zinc-700 shrink-0">
+                                            <Avatar className="h-8 w-8 border border-border-subtle shrink-0">
                                                 {log.user?.imageUrl ? (
                                                     <AvatarImage
                                                         src={log.user.imageUrl}
                                                     />
                                                 ) : null}
-                                                <AvatarFallback className="bg-zinc-800 text-zinc-300 text-xs uppercase">
+                                                <AvatarFallback className="bg-bg-card text-text-secondary text-xs uppercase">
                                                     {log.user?.name
                                                         ? log.user.name.substring(
                                                               0,
@@ -388,16 +388,16 @@ export function ViewDetailsModal({
                                                 </AvatarFallback>
                                             </Avatar>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm text-zinc-200">
+                                                <p className="text-sm text-text-primary">
                                                     <span className="font-medium">
                                                         {log.user?.name ||
                                                             "Unknown User"}
                                                     </span>{" "}
-                                                    <span className="text-zinc-400">
+                                                    <span className="text-text-secondary">
                                                         {log.details}
                                                     </span>
                                                 </p>
-                                                <p className="text-xs text-zinc-500 mt-1">
+                                                <p className="text-xs text-text-muted mt-1">
                                                     {new Date(
                                                         log.createdAt,
                                                     ).toLocaleDateString(

@@ -127,21 +127,21 @@ export default function DashboardPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050505]">
+        <div className="min-h-screen bg-bg-base">
             <FloatingNav />
             <main className="container mx-auto px-4 py-8">
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">
+                        <h1 className="text-2xl font-bold tracking-tight text-text-primary">
                             Your Secure Envs
                         </h1>
-                        <p className="text-zinc-500">
+                        <p className="text-text-secondary">
                             Manage and deploy environment variables securely.
                         </p>
                     </div>
                     <Button
                         onClick={() => setIsNewSecretModalOpen(true)}
-                        className="bg-blue-600 hover:bg-blue-500 text-white"
+                        className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary"
                     >
                         + New Secret
                     </Button>
@@ -149,40 +149,40 @@ export default function DashboardPage() {
 
                 <div className="mb-6 flex gap-3">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
                         <Input
                             placeholder="Find repository or project..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="h-10 bg-zinc-900/50 border-zinc-800 pl-10 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-blue-600"
+                            className="h-10 bg-bg-subtle border-white/10 pl-10 text-text-primary placeholder:text-text-muted focus-visible:ring-accent-emerald"
                         />
                     </div>
                     <Button
                         variant="outline"
-                        className="h-10 border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:text-zinc-200"
+                        className="h-10 border-white/10 bg-bg-subtle text-text-secondary hover:text-text-primary"
                     >
                         Filter
                     </Button>
                 </div>
 
-                <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/10">
+                <div className="rounded-xl border border-white/10 bg-bg-card/30">
                     {isLoading ? (
                         <div className="p-8">
                             <div className="space-y-4">
                                 {[1, 2, 3].map((i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center gap-4 rounded-lg border border-zinc-800/50 bg-zinc-900/30 p-4"
+                                        className="flex items-center gap-4 rounded-lg border border-white/10 bg-bg-card/50 p-4"
                                     >
-                                        <div className="h-10 w-10 animate-pulse rounded-lg bg-zinc-800/60" />
+                                        <div className="h-10 w-10 animate-pulse rounded-lg bg-bg-subtle/80" />
                                         <div className="flex-1 space-y-2">
-                                            <div className="h-4 w-32 animate-pulse rounded bg-zinc-800/60" />
-                                            <div className="h-3 w-48 animate-pulse rounded bg-zinc-800/40" />
+                                            <div className="h-4 w-32 animate-pulse rounded bg-bg-subtle/80" />
+                                            <div className="h-3 w-48 animate-pulse rounded bg-bg-subtle/50" />
                                         </div>
-                                        <div className="h-6 w-20 animate-pulse rounded-full bg-zinc-800/60" />
-                                        <div className="h-4 w-12 animate-pulse rounded bg-zinc-800/60" />
-                                        <div className="h-4 w-16 animate-pulse rounded bg-zinc-800/60" />
-                                        <div className="h-8 w-8 animate-pulse rounded bg-zinc-800/60" />
+                                        <div className="h-6 w-20 animate-pulse rounded-full bg-bg-subtle/80" />
+                                        <div className="h-4 w-12 animate-pulse rounded bg-bg-subtle/80" />
+                                        <div className="h-4 w-16 animate-pulse rounded bg-bg-subtle/80" />
+                                        <div className="h-8 w-8 animate-pulse rounded bg-bg-subtle/80" />
                                     </div>
                                 ))}
                             </div>
@@ -195,25 +195,25 @@ export default function DashboardPage() {
                         </div>
                     ) : filteredSecrets.length === 0 ? (
                         <div className="p-8 text-center">
-                            <p className="text-zinc-500">No secrets found</p>
+                            <p className="text-text-muted">No secrets found</p>
                         </div>
                     ) : (
                         <Table>
                             <TableHeader>
-                                <TableRow className="border-zinc-800/80 hover:bg-transparent">
-                                    <TableHead className="text-zinc-400">
+                                <TableRow className="border-white/10 hover:bg-transparent">
+                                    <TableHead className="text-text-muted">
                                         PROJECT
                                     </TableHead>
-                                    <TableHead className="text-zinc-400">
+                                    <TableHead className="text-text-muted">
                                         ENVIRONMENT
                                     </TableHead>
-                                    <TableHead className="text-zinc-400">
+                                    <TableHead className="text-text-muted">
                                         KEYS
                                     </TableHead>
-                                    <TableHead className="text-zinc-400">
+                                    <TableHead className="text-text-muted">
                                         LAST UPDATED
                                     </TableHead>
-                                    <TableHead className="text-right text-zinc-400">
+                                    <TableHead className="text-right text-text-muted">
                                         ACTIONS
                                     </TableHead>
                                 </TableRow>
@@ -226,16 +226,16 @@ export default function DashboardPage() {
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
-                                            className="border-zinc-800/50 hover:bg-zinc-900/30"
+                                            className="border-white/5 hover:bg-bg-card/60"
                                         >
                                             <TableCell>
                                                 <div className="flex items-center gap-3">
-                                                    <Folder className="h-4 w-4 text-zinc-500" />
+                                                    <Folder className="h-4 w-4 text-text-muted" />
                                                     <div>
-                                                        <div className="font-medium text-zinc-200">
+                                                        <div className="font-medium text-text-primary">
                                                             {secret.projectId}
                                                         </div>
-                                                        <div className="text-xs text-zinc-500">
+                                                        <div className="text-xs text-text-muted">
                                                             Cluster
                                                             configuration
                                                         </div>
@@ -254,11 +254,11 @@ export default function DashboardPage() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell>
-                                                <span className="font-mono text-zinc-300">
+                                                <span className="font-mono text-text-secondary">
                                                     🔑 {secret.sharesCount}
                                                 </span>
                                             </TableCell>
-                                            <TableCell className="text-zinc-400">
+                                            <TableCell className="text-text-secondary">
                                                 {new Date(
                                                     secret.updatedAt,
                                                 ).toLocaleDateString("en-US", {
@@ -276,14 +276,14 @@ export default function DashboardPage() {
                                                         <Button
                                                             variant="ghost"
                                                             size="icon"
-                                                            className="h-8 w-8 text-zinc-400 hover:text-zinc-200"
+                                                            className="h-8 w-8 text-text-secondary hover:text-text-primary"
                                                         >
                                                             <MoreHorizontal className="h-4 w-4" />
                                                         </Button>
                                                     </DropdownMenuTrigger>
                                                     <DropdownMenuContent
                                                         align="end"
-                                                        className="w-48 bg-zinc-900 border-zinc-800"
+                                                        className="w-48 bg-bg-card border-white/10"
                                                     >
                                                         <DropdownMenuItem
                                                             onClick={() =>

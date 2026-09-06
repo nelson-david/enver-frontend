@@ -41,7 +41,7 @@ export function DeleteSecretModal({
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative z-10 w-full max-w-md border rounded-xl border-zinc-800/90 bg-[#09090b] p-6 shadow-2xl overflow-hidden font-sans"
+                        className="relative z-10 w-full max-w-md border rounded-xl border-border-subtle bg-bg-base p-6 shadow-2xl overflow-hidden font-sans"
                     >
                         {/* Close button */}
                         <button
@@ -49,7 +49,7 @@ export function DeleteSecretModal({
                             disabled={isLoading}
                             className="absolute right-4 top-4 rounded-sm opacity-50 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none cursor-pointer"
                         >
-                            <X className="h-4 w-4 text-zinc-400" />
+                            <X className="h-4 w-4 text-text-secondary" />
                         </button>
 
                         <div className="flex flex-col items-center text-center mt-2">
@@ -58,16 +58,16 @@ export function DeleteSecretModal({
                                 <AlertTriangle className="h-5 w-5" />
                             </div>
 
-                            <h3 className="text-base font-semibold text-zinc-100">
+                            <h3 className="text-base font-semibold text-text-primary">
                                 Delete Environment Secret
                             </h3>
-                            <p className="text-zinc-400 text-xs mt-2 leading-relaxed">
+                            <p className="text-text-secondary text-xs mt-2 leading-relaxed">
                                 Are you sure you want to delete the secret for project{" "}
-                                <span className="font-semibold text-zinc-200 lowercase">
+                                <span className="font-semibold text-text-primary lowercase">
                                     "{projectName}"
                                 </span>{" "}
                                 under the{" "}
-                                <span className="font-semibold text-zinc-200 uppercase">
+                                <span className="font-semibold text-text-primary uppercase">
                                     {environment}
                                 </span>{" "}
                                 environment? This action is irreversible.
@@ -80,7 +80,7 @@ export function DeleteSecretModal({
                                 variant="outline"
                                 onClick={onClose}
                                 disabled={isLoading}
-                                className="flex-1 border-zinc-800 bg-zinc-900/40 text-zinc-300 hover:bg-zinc-800/80 hover:text-zinc-100 cursor-pointer text-xs h-9"
+                                className="flex-1 border-border-subtle bg-bg-subtle/40 text-text-secondary hover:bg-bg-card/80 hover:text-text-primary cursor-pointer text-xs h-9"
                             >
                                 Cancel
                             </Button>

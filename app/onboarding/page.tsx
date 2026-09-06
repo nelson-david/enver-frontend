@@ -128,16 +128,16 @@ export default function OnboardingPage() {
 
     if (!isLoaded || !user) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-                <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
+            <div className="min-h-screen flex items-center justify-center bg-bg-base">
+                <Loader2 className="h-8 w-8 text-accent-emerald animate-spin" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#050505] p-4 font-dm-sans">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-bg-base p-4">
             {/* Background Ambient Glow */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-accent-emerald/10 rounded-full blur-3xl pointer-events-none" />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -145,23 +145,16 @@ export default function OnboardingPage() {
                 transition={{ duration: 0.5 }}
                 className="w-full max-w-lg relative z-10"
             >
-                {/* Brand Header */}
-                {/* <div className="flex items-center justify-center gap-2 mb-8">
-                    <span className="text-2xl font-bold text-white tracking-tight font-dm-sams">
-                        Enver
-                    </span>
-                </div> */}
-
                 {/* Main Card */}
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-8 backdrop-blur-xl shadow-2xl">
+                <div className="rounded-2xl border border-border-subtle bg-bg-card/80 p-8 backdrop-blur-xl shadow-2xl">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-medium mb-3">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-accent-emerald/30 bg-accent-emerald/10 text-accent-mint text-xs font-medium mb-3">
                             <Sparkles className="h-3.5 w-3.5" /> Welcome aboard
                         </div>
-                        <h1 className="text-2xl font-bold text-white tracking-tight">
+                        <h1 className="text-2xl font-bold text-text-primary tracking-tight">
                             Set up your profile
                         </h1>
-                        <p className="text-sm text-zinc-400 mt-1">
+                        <p className="text-sm text-text-secondary mt-1">
                             Choose how you'll appear across your team's secure
                             environments.
                         </p>
@@ -177,19 +170,19 @@ export default function OnboardingPage() {
                         {/* Live Avatar Preview */}
                         <div className="flex flex-col items-center justify-center gap-3">
                             <div className="relative group">
-                                <Avatar className="h-24 w-24 border-2 border-blue-500/40 shadow-xl ring-4 ring-zinc-900">
+                                <Avatar className="h-24 w-24 border-2 border-accent-emerald/40 shadow-xl ring-4 ring-bg-card">
                                     <AvatarImage
                                         src={activeImageUrl}
                                         alt={name || "User Avatar"}
                                     />
-                                    <AvatarFallback className="bg-zinc-800 text-zinc-200 text-xl font-bold">
+                                    <AvatarFallback className="bg-bg-subtle text-text-secondary text-xl font-bold">
                                         {name
                                             ? name.substring(0, 2).toUpperCase()
                                             : "EV"}
                                     </AvatarFallback>
                                 </Avatar>
                             </div>
-                            <span className="text-xs text-zinc-400">
+                            <span className="text-xs text-text-muted">
                                 Selected Avatar Preview
                             </span>
                         </div>
@@ -198,7 +191,7 @@ export default function OnboardingPage() {
                         <div className="space-y-2">
                             <Label
                                 htmlFor="name"
-                                className="text-xs font-semibold text-zinc-300 uppercase tracking-wider"
+                                className="text-xs font-semibold text-text-secondary uppercase tracking-wider"
                             >
                                 Your Display Name
                             </Label>
@@ -208,14 +201,14 @@ export default function OnboardingPage() {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder="Enter your full name"
-                                className="bg-zinc-800/60 border-zinc-700 text-white placeholder:text-zinc-500 h-11 focus-visible:ring-blue-500 focus-visible:border-blue-500"
+                                className="bg-bg-subtle border-white/10 text-text-primary placeholder:text-text-muted h-11 focus-visible:ring-accent-emerald focus-visible:border-accent-emerald"
                                 required
                             />
                         </div>
 
                         {/* Image / Avatar Selection Grid */}
                         <div className="space-y-3">
-                            <Label className="text-xs font-semibold text-zinc-300 uppercase tracking-wider block">
+                            <Label className="text-xs font-semibold text-text-secondary uppercase tracking-wider block">
                                 Choose Profile Image
                             </Label>
 
@@ -239,8 +232,8 @@ export default function OnboardingPage() {
                                             }}
                                             className={`relative rounded-xl p-1 border transition-all flex flex-col items-center justify-center aspect-square overflow-hidden group ${
                                                 isSelected
-                                                    ? "border-blue-500 bg-blue-500/10 ring-2 ring-blue-500/30"
-                                                    : "border-zinc-800 bg-zinc-800/40 hover:border-zinc-700"
+                                                    ? "border-accent-emerald bg-accent-emerald/10 ring-2 ring-accent-emerald/30"
+                                                    : "border-white/10 bg-bg-subtle/40 hover:border-white/20"
                                             }`}
                                         >
                                             <Avatar className="h-full w-full rounded-lg">
@@ -248,13 +241,13 @@ export default function OnboardingPage() {
                                                     src={imgUrl}
                                                     alt={preset.label}
                                                 />
-                                                <AvatarFallback className="bg-zinc-800 text-zinc-400 text-xs">
+                                                <AvatarFallback className="bg-bg-subtle text-text-muted text-xs">
                                                     {preset.label[0]}
                                                 </AvatarFallback>
                                             </Avatar>
                                             {isSelected && (
-                                                <div className="absolute inset-0 bg-blue-600/30 backdrop-blur-[1px] flex items-center justify-center">
-                                                    <Check className="h-4 w-4 text-white stroke-3" />
+                                                <div className="absolute inset-0 bg-accent-emerald/30 backdrop-blur-[1px] flex items-center justify-center">
+                                                    <Check className="h-4 w-4 text-text-primary stroke-3" />
                                                 </div>
                                             )}
                                         </button>
@@ -270,7 +263,7 @@ export default function OnboardingPage() {
                                         onClick={() =>
                                             setIsCustomUrlActive(true)
                                         }
-                                        className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1.5 font-medium transition-colors"
+                                        className="text-xs text-accent-mint hover:text-accent-emerald flex items-center gap-1.5 font-medium transition-colors"
                                     >
                                         <LinkIcon className="h-3.5 w-3.5" /> Use
                                         custom image URL
@@ -280,7 +273,7 @@ export default function OnboardingPage() {
                                         <div className="flex items-center justify-between">
                                             <Label
                                                 htmlFor="customUrl"
-                                                className="text-xs text-zinc-400"
+                                                className="text-xs text-text-muted"
                                             >
                                                 Custom Avatar URL
                                             </Label>
@@ -289,7 +282,7 @@ export default function OnboardingPage() {
                                                 onClick={() =>
                                                     setIsCustomUrlActive(false)
                                                 }
-                                                className="text-xs text-zinc-400 hover:text-zinc-200"
+                                                className="text-xs text-text-muted hover:text-text-secondary"
                                             >
                                                 Cancel
                                             </button>
@@ -304,7 +297,7 @@ export default function OnboardingPage() {
                                                 )
                                             }
                                             placeholder="https://example.com/avatar.png"
-                                            className="bg-zinc-800/60 border-zinc-700 text-white placeholder:text-zinc-500 h-9 text-xs"
+                                            className="bg-bg-subtle border-white/10 text-text-primary placeholder:text-text-muted h-9 text-xs"
                                         />
                                     </div>
                                 )}
@@ -315,7 +308,7 @@ export default function OnboardingPage() {
                         <Button
                             type="submit"
                             disabled={submitting}
-                            className="w-full h-11 bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm rounded-xl shadow-lg shadow-blue-600/25 transition-all flex items-center justify-center gap-2 group"
+                            className="w-full h-11 bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary font-medium text-sm rounded-xl shadow-lg shadow-accent-emerald-strong/25 transition-all flex items-center justify-center gap-2 group"
                         >
                             {submitting ? (
                                 <>

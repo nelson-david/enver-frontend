@@ -92,19 +92,19 @@ export function NewSecretModal({
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 15 }}
                         transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative z-10 w-full max-w-xl border rounded-xl border-zinc-800/90 bg-[#09090b] p-6 shadow-2xl overflow-hidden font-sans"
+                        className="relative z-10 w-full max-w-xl border rounded-xl border-border-subtle bg-bg-base p-6 shadow-2xl overflow-hidden font-sans"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between pb-4 border-b border-zinc-800/60">
+                        <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
                             <div className="flex items-center gap-2.5">
-                                <PlusCircle className="h-5 w-5 text-zinc-300" />
-                                <h2 className="text-lg font-semibold text-white tracking-tight font-dm-sans">
+                                <PlusCircle className="h-5 w-5 text-text-secondary" />
+                                <h2 className="text-lg font-semibold text-text-primary tracking-tight font-dm-sans">
                                     New Secret
                                 </h2>
                             </div>
                             <button
                                 onClick={onClose}
-                                className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer"
+                                className="rounded-lg p-1.5 text-text-secondary hover:bg-bg-card hover:text-text-primary transition-colors cursor-pointer"
                                 aria-label="Close modal"
                             >
                                 <X className="h-4 w-4" />
@@ -117,7 +117,7 @@ export function NewSecretModal({
                                 {/* Project Name & Environment Inputs */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-xs font-dm-sans font-medium text-zinc-400 mb-1.5">
+                                        <label className="block text-xs font-dm-sans font-medium text-text-secondary mb-1.5">
                                             Project Name
                                         </label>
                                         <input
@@ -128,12 +128,12 @@ export function NewSecretModal({
                                             }
                                             placeholder="e.g. auth-service"
                                             name="auth-service"
-                                            className="w-full rounded-xl border border-zinc-800 bg-[#050505] px-3.5 py-2.5 text-sm text-zinc-100 font-mono placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none transition-colors"
+                                            className="w-full rounded-xl border border-border-subtle bg-bg-base px-3.5 py-2.5 text-sm text-text-primary font-mono placeholder:text-text-muted focus:border-accent-emerald focus:outline-none transition-colors"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-dm-sans font-medium text-zinc-400 mb-1.5">
+                                        <label className="block text-xs font-dm-sans font-medium text-text-secondary mb-1.5">
                                             Environment
                                         </label>
                                         <div className="relative">
@@ -144,7 +144,7 @@ export function NewSecretModal({
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="w-full appearance-none rounded-xl border border-zinc-800 bg-[#050505] px-3.5 py-2.5 pr-10 text-sm text-zinc-100 font-mono focus:border-zinc-700 focus:outline-none transition-colors cursor-pointer"
+                                                className="w-full appearance-none rounded-xl border border-border-subtle bg-bg-base px-3.5 py-2.5 pr-10 text-sm text-text-primary font-mono focus:border-accent-emerald focus:outline-none transition-colors cursor-pointer"
                                             >
                                                 <option value="PRODUCTION">
                                                     Production
@@ -156,7 +156,7 @@ export function NewSecretModal({
                                                     Development
                                                 </option>
                                             </select>
-                                            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                                            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-secondary" />
                                         </div>
                                     </div>
                                 </div>
@@ -164,10 +164,10 @@ export function NewSecretModal({
                                 {/* .env Content */}
                                 <div>
                                     <div className="flex items-center justify-between mb-1.5">
-                                        <label className="text-xs font-dm-sans font-medium text-zinc-400">
+                                        <label className="text-xs font-dm-sans font-medium text-text-secondary">
                                             .env Content
                                         </label>
-                                        <span className="text-xs font-dm-sans text-zinc-500">
+                                        <span className="text-xs font-dm-sans text-text-muted">
                                             Key=Value pairs
                                         </span>
                                     </div>
@@ -178,19 +178,19 @@ export function NewSecretModal({
                                         }
                                         placeholder={`PASTE_YOUR_ENV_VARIABLES=here\nDATABASE_URL=postgres:// ...`}
                                         rows={5}
-                                        className="w-full rounded-xl border border-zinc-800 bg-[#050505] p-3.5 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none transition-colors resize-none leading-relaxed"
+                                        className="w-full rounded-xl border border-border-subtle bg-bg-base p-3.5 text-sm font-mono text-text-primary placeholder:text-text-muted focus:border-accent-emerald focus:outline-none transition-colors resize-none leading-relaxed"
                                     />
                                 </div>
 
                                 {/* Encryption Lock Key Card */}
-                                <div className="rounded-xl border border-zinc-800/80 bg-[#050505]/60 p-4 space-y-3">
+                                <div className="rounded-xl border border-border-subtle bg-bg-base/60 p-4 space-y-3">
                                     <div className="flex items-center gap-2">
-                                        <Lock className="h-4 w-4 text-amber-500" />
-                                        <span className="text-xs font-dm-sans font-semibold text-zinc-200">
+                                        <Lock className="h-4 w-4 text-accent-mint" />
+                                        <span className="text-xs font-dm-sans font-semibold text-text-primary">
                                             Encryption Lock Key
                                         </span>
                                     </div>
-                                    <p className="text-xs font-mono text-zinc-400 leading-relaxed">
+                                    <p className="text-xs font-mono text-text-secondary leading-relaxed">
                                         Provide a secure passphrase to encrypt
                                         these variables. This key is never
                                         stored on our servers.
@@ -208,14 +208,14 @@ export function NewSecretModal({
                                             }
                                             placeholder="••••••••••••••••"
                                             name="encryption-lock-key"
-                                            className="w-full rounded-lg border border-zinc-800 bg-[#050505] px-3.5 py-2.5 pr-10 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-700 focus:outline-none transition-colors"
+                                            className="w-full rounded-lg border border-border-subtle bg-bg-base px-3.5 py-2.5 pr-10 text-sm font-mono text-text-primary placeholder:text-text-muted focus:border-accent-emerald focus:outline-none transition-colors"
                                         />
                                         <button
                                             type="button"
                                             onClick={() =>
                                                 setShowLockKey(!showLockKey)
                                             }
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-secondary transition-colors"
                                         >
                                             {showLockKey ? (
                                                 <EyeOff className="h-4 w-4" />
@@ -228,17 +228,17 @@ export function NewSecretModal({
                             </div>
 
                             {/* Footer */}
-                            <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-zinc-800/60">
+                            <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-border-subtle">
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="rounded-lg border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 cursor-pointer text-[13px] font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+                                    className="rounded-lg border border-border-subtle bg-bg-subtle/80 px-4 py-2.5 cursor-pointer text-[13px] font-medium text-text-secondary hover:bg-bg-card hover:text-text-primary transition-colors"
                                 >
                                     Cancel
                                 </button>
                                 <Button
                                     type="submit"
-                                    className="bg-blue-600 hover:bg-blue-500 text-white gap-2 px-4 py-5 rounded-lg font-medium text-[13px] shadow-lg shadow-blue-600/20"
+                                    className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary gap-2 px-4 py-5 rounded-lg font-medium text-[13px] shadow-lg shadow-accent-emerald-strong/25"
                                 >
                                     <Lock className="h-3.5 w-4.5" />
                                     Encrypt & Upload Securely

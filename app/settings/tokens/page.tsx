@@ -240,7 +240,7 @@ export default function TokenSettingsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050505]">
+        <div className="min-h-screen bg-bg-base">
             <FloatingNav />
 
             <motion.main
@@ -251,10 +251,10 @@ export default function TokenSettingsPage() {
             >
                 {/* Header */}
                 <motion.div className="mb-6 sm:mb-8" variants={itemVariants}>
-                    <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+                    <h1 className="text-xl sm:text-2xl font-semibold text-text-primary tracking-tight">
                         Settings
                     </h1>
-                    <p className="text-zinc-400 text-sm mt-1">
+                    <p className="text-text-secondary text-sm mt-1">
                         Manage your account preferences and security tokens.
                     </p>
                 </motion.div>
@@ -263,11 +263,11 @@ export default function TokenSettingsPage() {
                 <motion.div className="lg:hidden mb-4" variants={itemVariants}>
                     <Button
                         variant="outline"
-                        className="w-full border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 justify-between"
+                        className="w-full border-border-subtle bg-bg-subtle/50 text-text-secondary hover:bg-bg-card hover:text-text-primary justify-between"
                         onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
                     >
                         <span className="flex items-center gap-2">
-                            <Key className="h-4 w-4 text-blue-500" />
+                            <Key className="h-4 w-4 text-accent-emerald" />
                             CLI Tokens
                         </span>
                         {mobileSidebarOpen ? (
@@ -290,7 +290,7 @@ export default function TokenSettingsPage() {
                         }}
                         className="overflow-hidden"
                     >
-                        <nav className="mt-2 space-y-0.5 rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-2">
+                        <nav className="mt-2 space-y-0.5 rounded-lg border border-border-subtle bg-bg-subtle/30 p-2">
                             {sidebarItems.map((item) => {
                                 const Icon = item.icon;
                                 const isActive = item.id === "tokens";
@@ -306,8 +306,8 @@ export default function TokenSettingsPage() {
                                         className={cn(
                                             "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors text-left",
                                             isActive
-                                                ? "bg-zinc-800/80 text-white"
-                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200",
+                                                ? "bg-bg-card/80 text-text-primary"
+                                                : "text-text-secondary hover:bg-bg-subtle hover:text-text-primary",
                                         )}
                                     >
                                         <Icon className="h-4 w-4" />
@@ -337,8 +337,8 @@ export default function TokenSettingsPage() {
                                         className={cn(
                                             "w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors relative overflow-hidden cursor-pointer",
                                             isActive
-                                                ? "bg-zinc-800/80 text-white"
-                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200",
+                                                ? "bg-bg-card/80 text-text-primary"
+                                                : "text-text-secondary hover:bg-bg-subtle hover:text-text-primary",
                                         )}
                                         whileHover={{ x: 2 }}
                                         whileTap={{ scale: 0.98 }}
@@ -352,7 +352,7 @@ export default function TokenSettingsPage() {
                                         {isActive && (
                                             <motion.div
                                                 layoutId="activeSidebarIndicator"
-                                                className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-blue-500 rounded-full"
+                                                className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-accent-emerald rounded-full"
                                                 transition={{
                                                     type: "spring",
                                                     stiffness: 500,
@@ -372,21 +372,21 @@ export default function TokenSettingsPage() {
                     <div className="flex-1 space-y-6">
                         <motion.div
                             variants={itemVariants}
-                            className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-4 sm:p-6"
+                            className="rounded-xl border border-border-subtle bg-bg-subtle/30 p-4 sm:p-6"
                         >
                             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                                 <div>
-                                    <h2 className="text-base sm:text-lg font-medium text-white tracking-tight">
+                                    <h2 className="text-base sm:text-lg font-medium text-text-primary tracking-tight">
                                         Personal Access Tokens (PAT)
                                     </h2>
-                                    <p className="text-sm text-zinc-400 mt-0.5">
+                                    <p className="text-sm text-text-secondary mt-0.5">
                                         Generate tokens to authenticate securely
                                         with Enver from the CLI.
                                     </p>
                                 </div>
                                 <Button
                                     onClick={() => setIsCreateModalOpen(true)}
-                                    className="bg-blue-600 hover:bg-blue-500 text-white gap-2 w-full sm:w-auto justify-center cursor-pointer shadow-lg shadow-blue-900/20"
+                                    className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary gap-2 w-full sm:w-auto justify-center cursor-pointer shadow-lg shadow-accent-emerald-strong/25"
                                 >
                                     <Plus className="h-4 w-4" />
                                     <span>Generate New Token</span>
@@ -394,19 +394,19 @@ export default function TokenSettingsPage() {
                             </div>
 
                             {isLoading ? (
-                                <div className="flex flex-col items-center justify-center py-12 text-zinc-500">
-                                    <Loader2 className="h-8 w-8 text-blue-500 animate-spin mb-4" />
+                                <div className="flex flex-col items-center justify-center py-12 text-text-muted">
+                                    <Loader2 className="h-8 w-8 text-accent-emerald animate-spin mb-4" />
                                     <p className="text-sm">
                                         Loading security tokens...
                                     </p>
                                 </div>
                             ) : tokens.length === 0 ? (
-                                <div className="rounded-lg border border-dashed border-zinc-800 p-8 text-center bg-zinc-950/20">
-                                    <Key className="h-10 w-10 text-zinc-600 mx-auto mb-3" />
-                                    <h3 className="text-sm font-medium text-zinc-300">
+                                <div className="rounded-lg border border-dashed border-border-subtle p-8 text-center bg-bg-base/20">
+                                    <Key className="h-10 w-10 text-text-dim mx-auto mb-3" />
+                                    <h3 className="text-sm font-medium text-text-secondary">
                                         No CLI tokens active
                                     </h3>
-                                    <p className="text-xs text-zinc-500 mt-1 max-w-sm mx-auto">
+                                    <p className="text-xs text-text-muted mt-1 max-w-sm mx-auto">
                                         You haven't generated any Personal
                                         Access Tokens yet. Create one to log in
                                         via the CLI.
@@ -419,14 +419,14 @@ export default function TokenSettingsPage() {
                                         {tokens.map((token) => (
                                             <div
                                                 key={token.id}
-                                                className="rounded-lg border border-zinc-800/50 bg-zinc-900/50 p-4 space-y-3 relative overflow-hidden"
+                                                className="rounded-lg border border-border-subtle bg-bg-card/50 p-4 space-y-3 relative overflow-hidden"
                                             >
                                                 <div className="flex items-start justify-between gap-2">
                                                     <div className="min-w-0">
-                                                        <p className="text-sm font-medium text-zinc-200 truncate">
+                                                        <p className="text-sm font-medium text-text-primary truncate">
                                                             {token.name}
                                                         </p>
-                                                        <code className="text-xs font-mono text-zinc-500 mt-0.5 block">
+                                                        <code className="text-xs font-mono text-text-muted mt-0.5 block">
                                                             {
                                                                 token.displayPrefix
                                                             }
@@ -444,7 +444,7 @@ export default function TokenSettingsPage() {
                                                                         null,
                                                                     )
                                                                 }
-                                                                className="h-7 px-2 text-xs text-zinc-400 hover:text-zinc-200 cursor-pointer"
+                                                                className="h-7 px-2 text-xs text-text-secondary hover:text-text-primary cursor-pointer"
                                                             >
                                                                 Cancel
                                                             </Button>
@@ -474,15 +474,15 @@ export default function TokenSettingsPage() {
                                                                     token.id,
                                                                 )
                                                             }
-                                                            className="h-8 w-8 text-zinc-500 hover:text-red-400 hover:bg-red-950/20 cursor-pointer shrink-0"
+                                                            className="h-8 w-8 text-text-muted hover:text-red-400 hover:bg-red-950/20 cursor-pointer shrink-0"
                                                         >
                                                             <Trash2 className="h-4 w-4" />
                                                         </Button>
                                                     )}
                                                 </div>
-                                                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-zinc-800/50 text-[11px] text-zinc-500">
+                                                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border-subtle text-[11px] text-text-muted">
                                                     <div>
-                                                        <span className="block text-[10px] text-zinc-600 uppercase tracking-wide">
+                                                        <span className="block text-[10px] text-text-dim uppercase tracking-wide">
                                                             Created
                                                         </span>
                                                         <span>
@@ -492,7 +492,7 @@ export default function TokenSettingsPage() {
                                                         </span>
                                                     </div>
                                                     <div>
-                                                        <span className="block text-[10px] text-zinc-600 uppercase tracking-wide">
+                                                        <span className="block text-[10px] text-text-dim uppercase tracking-wide">
                                                             Expires
                                                         </span>
                                                         <span>
@@ -502,7 +502,7 @@ export default function TokenSettingsPage() {
                                                         </span>
                                                     </div>
                                                     <div className="col-span-2">
-                                                        <span className="block text-[10px] text-zinc-600 uppercase tracking-wide">
+                                                        <span className="block text-[10px] text-text-dim uppercase tracking-wide">
                                                             Last Used
                                                         </span>
                                                         <span>
@@ -517,26 +517,26 @@ export default function TokenSettingsPage() {
                                     </div>
 
                                     {/* Desktop Table View */}
-                                    <div className="hidden sm:block rounded-lg border border-zinc-800/50 overflow-hidden bg-zinc-950/10">
+                                    <div className="hidden sm:block rounded-lg border border-border-subtle overflow-hidden bg-bg-base/10">
                                         <Table>
                                             <TableHeader>
-                                                <TableRow className="border-b border-zinc-800/50 hover:bg-transparent bg-zinc-900/50">
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider h-11">
+                                                <TableRow className="border-b border-border-subtle hover:bg-transparent bg-bg-subtle/50">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider h-11">
                                                         TOKEN NAME
                                                     </TableHead>
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider h-11">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider h-11">
                                                         PREFIX
                                                     </TableHead>
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider h-11">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider h-11">
                                                         CREATED
                                                     </TableHead>
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider h-11">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider h-11">
                                                         EXPIRES
                                                     </TableHead>
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider h-11">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider h-11">
                                                         LAST USED
                                                     </TableHead>
-                                                    <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider text-right h-11">
+                                                    <TableHead className="text-text-secondary font-medium text-xs uppercase tracking-wider text-right h-11">
                                                         ACTION
                                                     </TableHead>
                                                 </TableRow>
@@ -545,28 +545,28 @@ export default function TokenSettingsPage() {
                                                 {tokens.map((token) => (
                                                     <TableRow
                                                         key={token.id}
-                                                        className="border-b border-zinc-800/30 hover:bg-zinc-800/10 transition-colors"
+                                                        className="border-b border-border-light hover:bg-bg-card/10 transition-colors"
                                                     >
-                                                        <TableCell className="font-medium text-zinc-200 py-3.5">
+                                                        <TableCell className="font-medium text-text-primary py-3.5">
                                                             {token.name}
                                                         </TableCell>
                                                         <TableCell className="py-3.5">
-                                                            <code className="text-xs font-mono text-zinc-400 bg-zinc-900/60 px-1.5 py-0.5 rounded border border-zinc-800/50">
+                                                            <code className="text-xs font-mono text-text-secondary bg-bg-subtle/60 px-1.5 py-0.5 rounded border border-border-subtle">
                                                                 {
                                                                     token.displayPrefix
                                                                 }
                                                                 ...
                                                             </code>
                                                         </TableCell>
-                                                        <TableCell className="text-sm text-zinc-400 py-3.5">
-                                                            <span className="flex items-center gap-1.5 text-xs text-zinc-400">
-                                                                <Calendar className="h-3.5 w-3.5 text-zinc-500" />
+                                                        <TableCell className="text-sm text-text-secondary py-3.5">
+                                                            <span className="flex items-center gap-1.5 text-xs text-text-secondary">
+                                                                <Calendar className="h-3.5 w-3.5 text-text-muted" />
                                                                 {new Date(
                                                                     token.createdAt,
                                                                 ).toLocaleDateString()}
                                                             </span>
                                                         </TableCell>
-                                                        <TableCell className="text-sm text-zinc-400 py-3.5">
+                                                        <TableCell className="text-sm text-text-secondary py-3.5">
                                                             <span
                                                                 className={cn(
                                                                     "inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium border",
@@ -576,7 +576,7 @@ export default function TokenSettingsPage() {
                                                                         ) <
                                                                             new Date()
                                                                         ? "bg-red-950/20 text-red-400 border-red-900/30"
-                                                                        : "bg-zinc-900/30 text-zinc-300 border-zinc-800/50",
+                                                                        : "bg-bg-subtle/30 text-text-secondary border-border-subtle",
                                                                 )}
                                                             >
                                                                 {formatExpiryDate(
@@ -584,9 +584,9 @@ export default function TokenSettingsPage() {
                                                                 )}
                                                             </span>
                                                         </TableCell>
-                                                        <TableCell className="text-sm text-zinc-400 py-3.5">
-                                                            <span className="flex items-center gap-1.5 text-xs text-zinc-400">
-                                                                <Clock className="h-3.5 w-3.5 text-zinc-500" />
+                                                        <TableCell className="text-sm text-text-secondary py-3.5">
+                                                            <span className="flex items-center gap-1.5 text-xs text-text-secondary">
+                                                                <Clock className="h-3.5 w-3.5 text-text-muted" />
                                                                 {formatRelativeTime(
                                                                     token.lastUsedAt,
                                                                 )}
@@ -596,7 +596,7 @@ export default function TokenSettingsPage() {
                                                             {confirmRevokeId ===
                                                             token.id ? (
                                                                 <div className="inline-flex items-center gap-2">
-                                                                    <span className="text-[11px] text-zinc-500 font-medium">
+                                                                    <span className="text-[11px] text-text-muted font-medium">
                                                                         Revoke?
                                                                     </span>
                                                                     <Button
@@ -607,7 +607,7 @@ export default function TokenSettingsPage() {
                                                                                 null,
                                                                             )
                                                                         }
-                                                                        className="h-7 px-2 text-xs text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40 cursor-pointer"
+                                                                        className="h-7 px-2 text-xs text-text-secondary hover:text-text-primary hover:bg-bg-card/40 cursor-pointer"
                                                                     >
                                                                         No
                                                                     </Button>
@@ -637,7 +637,7 @@ export default function TokenSettingsPage() {
                                                                             token.id,
                                                                         )
                                                                     }
-                                                                    className="h-8 w-8 text-zinc-500 hover:text-red-400 hover:bg-red-950/30 cursor-pointer rounded"
+                                                                    className="h-8 w-8 text-text-muted hover:text-red-400 hover:bg-red-950/30 cursor-pointer rounded"
                                                                 >
                                                                     <Trash2 className="h-4 w-4" />
                                                                 </Button>
@@ -677,7 +677,7 @@ export default function TokenSettingsPage() {
                                 duration: 0.25,
                                 ease: [0.22, 1, 0.36, 1],
                             }}
-                            className="bg-[#0c0c0e] border border-zinc-800 text-white rounded-xl shadow-2xl max-w-md w-full relative z-10 overflow-hidden"
+                            className="bg-bg-card border border-border-subtle text-text-primary rounded-xl shadow-2xl max-w-md w-full relative z-10 overflow-hidden"
                         >
                             {!createdTokenData ? (
                                 // Step 1: Input details form
@@ -685,15 +685,15 @@ export default function TokenSettingsPage() {
                                     onSubmit={handleCreateToken}
                                     className="p-6 space-y-4"
                                 >
-                                    <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80">
-                                        <h3 className="text-base font-semibold text-white tracking-tight flex items-center gap-2">
-                                            <Key className="h-4.5 w-4.5 text-blue-500" />
+                                    <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
+                                        <h3 className="text-base font-semibold text-text-primary tracking-tight flex items-center gap-2">
+                                            <Key className="h-4.5 w-4.5 text-accent-emerald" />
                                             Generate API Token
                                         </h3>
                                         <button
                                             type="button"
                                             onClick={closeModal}
-                                            className="text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
+                                            className="text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
                                         >
                                             <X className="h-4 w-4" />
                                         </button>
@@ -702,7 +702,7 @@ export default function TokenSettingsPage() {
                                     <div className="space-y-2 mt-2">
                                         <Label
                                             htmlFor="tName"
-                                            className="text-xs text-zinc-300 font-medium"
+                                            className="text-xs text-text-secondary font-medium"
                                         >
                                             Token Name
                                         </Label>
@@ -713,18 +713,18 @@ export default function TokenSettingsPage() {
                                                 setTokenName(e.target.value)
                                             }
                                             placeholder="e.g. Work Laptop, CI/CD Pipeline"
-                                            className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-blue-600 focus-visible:border-blue-600 text-sm h-10"
+                                            className="bg-bg-subtle/60 border-border-subtle text-text-primary placeholder:text-text-muted focus-visible:ring-accent-emerald focus-visible:border-accent-emerald text-sm h-10"
                                             autoFocus
                                             required
                                         />
-                                        <p className="text-[10px] text-zinc-500">
+                                        <p className="text-[10px] text-text-muted">
                                             Give the token a friendly name to
                                             identify it later.
                                         </p>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Label className="text-xs text-zinc-300 font-medium">
+                                        <Label className="text-xs text-text-secondary font-medium">
                                             Expiration (TTL)
                                         </Label>
                                         <div className="grid grid-cols-1 gap-2">
@@ -742,7 +742,7 @@ export default function TokenSettingsPage() {
                                                             : Number(val),
                                                     );
                                                 }}
-                                                className="bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:text-white rounded-md h-10 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 cursor-pointer"
+                                                className="bg-bg-subtle/60 border border-border-subtle text-text-secondary hover:text-text-primary rounded-md h-10 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent-emerald focus:border-accent-emerald cursor-pointer"
                                             >
                                                 <option value="7">
                                                     7 Days
@@ -764,7 +764,7 @@ export default function TokenSettingsPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Label className="text-xs text-zinc-300 font-medium">
+                                        <Label className="text-xs text-text-secondary font-medium">
                                             Scopes
                                         </Label>
                                         <Select
@@ -773,10 +773,10 @@ export default function TokenSettingsPage() {
                                                 setSelectedScope(value);
                                             }}
                                         >
-                                            <SelectTrigger className="w-full bg-zinc-900/60 border-zinc-800 text-zinc-300">
+                                            <SelectTrigger className="w-full bg-bg-subtle/60 border-border-subtle text-text-secondary">
                                                 <SelectValue className="font-mono text-xs" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
+                                            <SelectContent className="bg-bg-subtle border-border-subtle text-text-primary">
                                                 <SelectItem
                                                     value="read:secrets"
                                                     className="font-mono text-xs"
@@ -797,7 +797,7 @@ export default function TokenSettingsPage() {
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
-                                        <p className="text-[10px] text-zinc-500">
+                                        <p className="text-[10px] text-text-muted">
                                             Select the scope this token can
                                             perform. "write:secrets" includes
                                             read access and the ability to
@@ -805,19 +805,19 @@ export default function TokenSettingsPage() {
                                         </p>
                                     </div>
 
-                                    <div className="flex justify-end gap-3 pt-4 border-t border-zinc-800/80 mt-6">
+                                    <div className="flex justify-end gap-3 pt-4 border-t border-border-subtle mt-6">
                                         <Button
                                             type="button"
                                             variant="outline"
                                             onClick={closeModal}
-                                            className="border-zinc-800 bg-zinc-900/40 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 cursor-pointer h-9 px-4 text-xs font-medium"
+                                            className="border-border-subtle bg-bg-subtle/40 text-text-secondary hover:text-text-primary hover:bg-bg-card cursor-pointer h-9 px-4 text-xs font-medium"
                                         >
                                             Cancel
                                         </Button>
                                         <Button
                                             type="submit"
                                             disabled={createMutation.isPending}
-                                            className="bg-blue-600 hover:bg-blue-500 text-white cursor-pointer h-9 px-4 text-xs font-medium"
+                                            className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary cursor-pointer h-9 px-4 text-xs font-medium shadow-lg shadow-accent-emerald-strong/20"
                                         >
                                             {createMutation.isPending
                                                 ? "Generating..."
@@ -829,22 +829,22 @@ export default function TokenSettingsPage() {
                                 // Step 2: Show raw token (success step)
                                 <div className="p-6 space-y-5">
                                     <div className="text-center pb-2">
-                                        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-green-950/40 border border-green-900/50 mb-3">
-                                            <Check className="h-5 w-5 text-green-500" />
+                                        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-accent-emerald/20 border border-accent-emerald/40 mb-3">
+                                            <Check className="h-5 w-5 text-accent-mint" />
                                         </div>
-                                        <h3 className="text-base font-semibold text-white tracking-tight">
+                                        <h3 className="text-base font-semibold text-text-primary tracking-tight">
                                             Token Generated Successfully
                                         </h3>
-                                        <p className="text-xs text-zinc-500 mt-1">
+                                        <p className="text-xs text-text-muted mt-1">
                                             Use this token to authenticate your
                                             terminal.
                                         </p>
                                     </div>
 
-                                    {/* Security Warning Alert */}
-                                    <div className="rounded-lg border border-amber-900/40 bg-amber-950/15 p-3 flex items-start gap-2.5">
-                                        <AlertTriangle className="h-4.5 w-4.5 text-amber-500 shrink-0 mt-0.5" />
-                                        <div className="text-[11px] text-amber-300 leading-relaxed font-medium">
+                                    {/* Security Warning Alert - mint-lean caution */}
+                                    <div className="rounded-lg border border-accent-mint/25 bg-accent-mint/10 p-3 flex items-start gap-2.5">
+                                        <AlertTriangle className="h-4.5 w-4.5 text-accent-mint shrink-0 mt-0.5" />
+                                        <div className="text-[11px] text-text-secondary leading-relaxed font-medium">
                                             Make sure to copy your token now.
                                             You won't be able to see it again
                                             once you close this modal!
@@ -853,7 +853,7 @@ export default function TokenSettingsPage() {
 
                                     {/* Raw Token Input Display */}
                                     <div className="space-y-1.5">
-                                        <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">
+                                        <span className="text-[10px] font-semibold text-text-secondary uppercase tracking-wide">
                                             Raw Token
                                         </span>
                                         <div className="relative flex items-center">
@@ -862,7 +862,7 @@ export default function TokenSettingsPage() {
                                                 value={
                                                     createdTokenData.rawToken
                                                 }
-                                                className="bg-zinc-950 border-zinc-800 text-zinc-300 font-mono text-xs pr-11 h-9.5 select-all"
+                                                className="bg-bg-base border-border-subtle text-text-secondary font-mono text-xs pr-11 h-9.5 select-all"
                                             />
                                             <Button
                                                 type="button"
@@ -873,10 +873,10 @@ export default function TokenSettingsPage() {
                                                         createdTokenData.rawToken,
                                                     )
                                                 }
-                                                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/80 cursor-pointer"
+                                                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-text-secondary hover:text-text-primary hover:bg-bg-subtle/80 cursor-pointer"
                                             >
                                                 {copiedToken ? (
-                                                    <Check className="h-3.5 w-3.5 text-green-500" />
+                                                    <Check className="h-3.5 w-3.5 text-accent-mint" />
                                                 ) : (
                                                     <Copy className="h-3.5 w-3.5" />
                                                 )}
@@ -886,12 +886,12 @@ export default function TokenSettingsPage() {
 
                                     {/* CLI Login Snippet */}
                                     <div className="space-y-1.5">
-                                        <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide flex items-center gap-1">
-                                            <Terminal className="h-3 w-3 text-zinc-500" />
+                                        <span className="text-[10px] font-semibold text-text-secondary uppercase tracking-wide flex items-center gap-1">
+                                            <Terminal className="h-3 w-3 text-text-muted" />
                                             CLI Login Command
                                         </span>
                                         <div className="relative flex items-center">
-                                            <code className="w-full bg-zinc-950 border border-zinc-800 text-zinc-400 font-mono text-[11px] px-3 py-2 rounded-md pr-11 truncate select-all">
+                                            <code className="w-full bg-bg-base border border-border-subtle text-text-secondary font-mono text-[11px] px-3 py-2 rounded-md pr-11 truncate select-all">
                                                 ev login{" "}
                                                 {createdTokenData.rawToken}
                                             </code>
@@ -904,10 +904,10 @@ export default function TokenSettingsPage() {
                                                         `ev login ${createdTokenData.rawToken}`,
                                                     )
                                                 }
-                                                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/80 cursor-pointer"
+                                                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 text-text-secondary hover:text-text-primary hover:bg-bg-subtle/80 cursor-pointer"
                                             >
                                                 {copiedSnippet ? (
-                                                    <Check className="h-3.5 w-3.5 text-green-500" />
+                                                    <Check className="h-3.5 w-3.5 text-accent-mint" />
                                                 ) : (
                                                     <Copy className="h-3.5 w-3.5" />
                                                 )}
@@ -919,7 +919,7 @@ export default function TokenSettingsPage() {
                                         <Button
                                             type="button"
                                             onClick={closeModal}
-                                            className="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 hover:text-white cursor-pointer h-9 text-xs font-semibold"
+                                            className="w-full bg-bg-subtle hover:bg-bg-card border border-border-subtle text-text-secondary hover:text-text-primary cursor-pointer h-9 text-xs font-semibold"
                                         >
                                             Done & Close
                                         </Button>

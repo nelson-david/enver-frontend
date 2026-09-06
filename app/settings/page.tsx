@@ -113,16 +113,16 @@ export default function Settings() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050505]">
+        <div className="min-h-screen bg-bg-base">
             <FloatingNav />
 
             <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-4 py-6 sm:py-8">
                 {/* Header */}
                 <div className="mb-6 sm:mb-8">
-                    <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+                    <h1 className="text-xl sm:text-2xl font-semibold text-text-primary tracking-tight">
                         Settings
                     </h1>
-                    <p className="text-zinc-400 text-sm mt-1">
+                    <p className="text-text-secondary text-sm mt-1">
                         Manage your account preferences and security tokens.
                     </p>
                 </div>
@@ -131,7 +131,7 @@ export default function Settings() {
                 <div className="lg:hidden mb-4">
                     <Button
                         variant="outline"
-                        className="w-full border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 justify-between"
+                        className="w-full border-white/10 bg-bg-subtle text-text-secondary hover:bg-bg-card hover:text-text-primary justify-between"
                         onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
                     >
                         <span className="flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function Settings() {
 
                     {/* Mobile Sidebar Dropdown */}
                     <div className="overflow-hidden">
-                        <nav className="mt-2 space-y-0.5 rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-2">
+                        <nav className="mt-2 space-y-0.5 rounded-lg border border-white/10 bg-bg-card/50 p-2">
                             {sidebarItems.map((item) => {
                                 const Icon = item.icon;
                                 const isActive = activeTab === item.id;
@@ -169,8 +169,8 @@ export default function Settings() {
                                         className={cn(
                                             "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                                             isActive
-                                                ? "bg-zinc-800/80 text-white"
-                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200",
+                                                ? "bg-bg-card/80 text-text-primary border border-white/10"
+                                                : "text-text-secondary hover:bg-bg-subtle hover:text-text-primary",
                                         )}
                                     >
                                         <Icon className="h-4 w-4" />
@@ -197,12 +197,12 @@ export default function Settings() {
                                         className={cn(
                                             "w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors relative overflow-hidden cursor-pointer",
                                             isActive
-                                                ? "bg-zinc-800/80 text-white"
-                                                : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200",
+                                                ? "bg-bg-card/80 text-text-primary border border-white/10"
+                                                : "text-text-secondary hover:bg-bg-subtle hover:text-text-primary",
                                         )}
                                     >
                                         {isActive && (
-                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-blue-500 rounded-full" />
+                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-accent-mint rounded-full" />
                                         )}
                                         <Icon className="h-4 w-4" />
                                         {item.label}
@@ -218,40 +218,40 @@ export default function Settings() {
                             {userLoading ? (
                                 <div key="loading" className="space-y-6">
                                     {/* Shimmer Loader for Account Information Card */}
-                                    <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/10 p-4 sm:p-6">
+                                    <div className="rounded-xl border border-white/10 bg-bg-card/30 p-4 sm:p-6">
                                         <div className="mb-6 space-y-2">
-                                            <div className="h-6 w-48 rounded bg-zinc-800/60 animate-pulse" />
-                                            <div className="h-4 w-64 rounded bg-zinc-800/30 animate-pulse" />
+                                            <div className="h-6 w-48 rounded bg-bg-subtle/80 animate-pulse" />
+                                            <div className="h-4 w-64 rounded bg-bg-subtle/50 animate-pulse" />
                                         </div>
 
                                         {/* Avatar Row */}
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                                            <div className="h-16 w-16 rounded-full bg-zinc-800/60 animate-pulse border-2 border-zinc-700/50" />
-                                            <div className="h-10 w-full sm:w-40 rounded-md bg-zinc-800/40 animate-pulse" />
+                                            <div className="h-16 w-16 rounded-full bg-bg-subtle/80 animate-pulse border-2 border-white/10" />
+                                            <div className="h-10 w-full sm:w-40 rounded-md bg-bg-subtle/60 animate-pulse" />
                                         </div>
 
                                         {/* Form Inputs */}
                                         <div className="space-y-4">
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
-                                                    <div className="h-4 w-24 rounded bg-zinc-800/50 animate-pulse" />
-                                                    <div className="h-10 w-full rounded-md bg-zinc-800/40 animate-pulse" />
+                                                    <div className="h-4 w-24 rounded bg-bg-subtle/70 animate-pulse" />
+                                                    <div className="h-10 w-full rounded-md bg-bg-subtle/60 animate-pulse" />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <div className="h-4 w-24 rounded bg-zinc-800/50 animate-pulse" />
-                                                    <div className="h-10 w-full rounded-md bg-zinc-800/40 animate-pulse" />
-                                                    <div className="h-3 w-48 rounded bg-zinc-800/30 animate-pulse" />
+                                                    <div className="h-4 w-24 rounded bg-bg-subtle/70 animate-pulse" />
+                                                    <div className="h-10 w-full rounded-md bg-bg-subtle/60 animate-pulse" />
+                                                    <div className="h-3 w-48 rounded bg-bg-subtle/40 animate-pulse" />
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <div className="h-4 w-24 rounded bg-zinc-800/50 animate-pulse" />
-                                                <div className="h-11 w-full rounded-md bg-zinc-800/30 animate-pulse" />
+                                                <div className="h-4 w-24 rounded bg-bg-subtle/70 animate-pulse" />
+                                                <div className="h-11 w-full rounded-md bg-bg-subtle/40 animate-pulse" />
                                             </div>
                                         </div>
 
                                         {/* Card Footer */}
-                                        <div className="flex justify-end mt-6 pt-6 border-t border-zinc-800/50">
-                                            <div className="h-10 w-full sm:w-32 rounded-md bg-zinc-800/60 animate-pulse" />
+                                        <div className="flex justify-end mt-6 pt-6 border-t border-white/10">
+                                            <div className="h-10 w-full sm:w-32 rounded-md bg-bg-subtle/80 animate-pulse" />
                                         </div>
                                     </div>
 
@@ -270,12 +270,12 @@ export default function Settings() {
                             ) : activeTab === "account" ? (
                                 <div key="account" className="space-y-6">
                                     {/* Account Information Card */}
-                                    <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-4 sm:p-6">
+                                    <div className="rounded-xl border border-white/10 bg-bg-card/30 p-4 sm:p-6">
                                         <div className="mb-6">
-                                            <h2 className="text-base sm:text-lg font-medium text-white tracking-tight">
+                                            <h2 className="text-base sm:text-lg font-medium text-text-primary tracking-tight">
                                                 Account Information
                                             </h2>
-                                            <p className="text-sm text-zinc-400 mt-0.5">
+                                            <p className="text-sm text-text-secondary mt-0.5">
                                                 Update your personal profile
                                                 details.
                                             </p>
@@ -283,7 +283,7 @@ export default function Settings() {
 
                                         {/* Avatar Row */}
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                                            <Avatar className="h-16 w-16 border-2 border-zinc-700">
+                                            <Avatar className="h-16 w-16 border-2 border-white/10">
                                                 {user?.imageUrl ? (
                                                     <AvatarImage
                                                         src={user.imageUrl}
@@ -293,7 +293,7 @@ export default function Settings() {
                                                         }
                                                     />
                                                 ) : null}
-                                                <AvatarFallback className="bg-zinc-800 text-zinc-200 text-lg uppercase">
+                                                <AvatarFallback className="bg-bg-subtle text-text-secondary text-lg uppercase">
                                                     {user?.name
                                                         ? user.name.substring(
                                                               0,
@@ -306,7 +306,7 @@ export default function Settings() {
                                                 variant="outline"
                                                 size="sm"
                                                 disabled
-                                                className="border-zinc-800 bg-zinc-900/40 text-zinc-400 cursor-not-allowed w-full sm:w-auto justify-center py-4"
+                                                className="border-white/10 bg-bg-card/40 text-text-muted cursor-not-allowed w-full sm:w-auto justify-center py-4"
                                             >
                                                 Avatar Managed on Clerk
                                             </Button>
@@ -318,7 +318,7 @@ export default function Settings() {
                                                 <div className="space-y-2">
                                                     <Label
                                                         htmlFor="displayName"
-                                                        className="text-sm text-zinc-300"
+                                                        className="text-sm text-text-secondary"
                                                     >
                                                         Display Name
                                                     </Label>
@@ -330,13 +330,13 @@ export default function Settings() {
                                                                 e.target.value,
                                                             )
                                                         }
-                                                        className="bg-zinc-800/50 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-blue-600"
+                                                        className="bg-bg-subtle border-white/10 text-text-primary placeholder:text-text-muted focus-visible:ring-accent-emerald"
                                                     />
                                                 </div>
                                                 <div className="space-y-2">
                                                     <Label
                                                         htmlFor="email"
-                                                        className="text-sm text-zinc-300"
+                                                        className="text-sm text-text-secondary"
                                                     >
                                                         Email Address
                                                     </Label>
@@ -347,9 +347,9 @@ export default function Settings() {
                                                         value={
                                                             user?.email || ""
                                                         }
-                                                        className="bg-zinc-900/40 border-zinc-800 text-zinc-500 cursor-not-allowed"
+                                                        className="bg-bg-card/40 border-white/10 text-text-muted cursor-not-allowed"
                                                     />
-                                                    <p className="text-[11px] text-zinc-500">
+                                                    <p className="text-[11px] text-text-muted">
                                                         Email is managed by your
                                                         Clerk authentication
                                                         session.
@@ -359,11 +359,11 @@ export default function Settings() {
                                             <div className="space-y-2">
                                                 <Label
                                                     htmlFor="memberSince"
-                                                    className="text-sm text-zinc-300"
+                                                    className="text-sm text-text-secondary"
                                                 >
                                                     Member Since
                                                 </Label>
-                                                <div className="tracking-tight h-11 px-3 rounded-md border border-zinc-800 bg-zinc-900/20 text-zinc-400 text-sm flex items-center">
+                                                <div className="tracking-tight h-11 px-3 rounded-md border border-white/10 bg-bg-card/20 text-text-secondary text-sm flex items-center">
                                                     {formatMemberSince(
                                                         user?.createdAt?.toString(),
                                                     )}
@@ -372,11 +372,11 @@ export default function Settings() {
                                         </div>
 
                                         {/* Card Footer */}
-                                        <div className="flex justify-end mt-6 pt-6 border-t border-zinc-800/50">
+                                        <div className="flex justify-end mt-6 pt-6 border-t border-white/10">
                                             <Button
                                                 onClick={handleSaveChanges}
                                                 disabled={isSaving}
-                                                className="bg-blue-600 hover:bg-blue-500 text-white w-full sm:w-auto cursor-pointer"
+                                                className="bg-accent-emerald-strong hover:bg-accent-emerald text-text-primary w-full sm:w-auto cursor-pointer"
                                             >
                                                 {isSaving
                                                     ? "Saving..."
@@ -520,15 +520,15 @@ export default function Settings() {
                             ) : activeTab === "billing" ? (
                                 <div
                                     key="billing"
-                                    className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
+                                    className="rounded-xl border border-white/10 bg-bg-card/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-blue-500 mb-4 shadow-inner">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-card border border-white/10 text-accent-mint mb-4 shadow-inner">
                                         <Sparkles className="h-5 w-5" />
                                     </div>
-                                    <h3 className="text-lg font-medium text-zinc-200">
+                                    <h3 className="text-lg font-medium text-text-primary">
                                         Billing Plan
                                     </h3>
-                                    <p className="text-zinc-400 text-sm max-w-sm mt-2 font-medium">
+                                    <p className="text-text-secondary text-sm max-w-sm mt-2 font-medium">
                                         Enver is currently free, until premium
                                         features are shipped.
                                     </p>
@@ -536,30 +536,30 @@ export default function Settings() {
                             ) : activeTab === "team" ? (
                                 <div
                                     key="team"
-                                    className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
+                                    className="rounded-xl border border-white/10 bg-bg-card/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-500 mb-4 shadow-inner">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-card border border-white/10 text-text-muted mb-4 shadow-inner">
                                         <Users className="h-5 w-5" />
                                     </div>
-                                    <h3 className="text-lg font-medium text-zinc-200">
+                                    <h3 className="text-lg font-medium text-text-primary">
                                         Teams & Collaborators
                                     </h3>
-                                    <p className="text-zinc-500 text-sm max-w-sm mt-2">
+                                    <p className="text-text-muted text-sm max-w-sm mt-2">
                                         Feature coming soon
                                     </p>
                                 </div>
                             ) : (
                                 <div
                                     key="security"
-                                    className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
+                                    className="rounded-xl border border-white/10 bg-bg-card/30 p-8 text-center flex flex-col items-center justify-center min-h-75"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-500 mb-4 shadow-inner">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-card border border-white/10 text-text-muted mb-4 shadow-inner">
                                         <Lock className="h-5 w-5" />
                                     </div>
-                                    <h3 className="text-lg font-medium text-zinc-200">
+                                    <h3 className="text-lg font-medium text-text-primary">
                                         Security Settings
                                     </h3>
-                                    <p className="text-zinc-500 text-sm max-w-sm mt-2">
+                                    <p className="text-text-muted text-sm max-w-sm mt-2">
                                         Security configuration settings will be
                                         customizable soon.
                                     </p>
