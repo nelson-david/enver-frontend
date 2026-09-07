@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FloatingNav } from "@/components/layout/floating-nav";
 import { Button } from "@/components/ui/button";
@@ -12,15 +12,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { userAtom, userLoadingAtom } from "@/store/user.store";
 import { setCachedUser } from "@/components/user-hydrator";
 import { useToast } from "@/context/toast-context";
-import { onboardingService } from "@/services/onboarding.service";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
+import { TokensTab } from "@/components/settings/tokens-tab";
 import { cn } from "@/lib/utils";
 import {
     User,
@@ -33,19 +25,7 @@ import {
     X,
     Sparkles,
     Lock,
-    Loader2,
 } from "lucide-react";
-
-interface Token {
-    id: string;
-    name: string;
-    lastUsed: string;
-}
-
-const tokens: Token[] = [
-    { id: "1", name: "production-deploy-key", lastUsed: "2 days ago" },
-    { id: "2", name: "local-dev-cli", lastUsed: "Never" },
-];
 
 const sidebarItems = [
     { id: "account", label: "Account", icon: User },
@@ -55,17 +35,27 @@ const sidebarItems = [
     { id: "team", label: "Team", icon: Users },
 ];
 
-export default function Settings() {
-    const router = useRouter();
+function SettingsContent() {
+    const searchParams = useSearchParams();
     const user = useAtomValue(userAtom);
     const userLoading = useAtomValue(userLoadingAtom);
     const setUser = useSetAtom(userAtom);
     const { addToast } = useToast();
 
-    const [activeTab, setActiveTab] = useState("account");
+    const initialTab = searchParams.get("tab") || "account";
+    const [activeTab, setActiveTab] = useState(
+        sidebarItems.some((i) => i.id === initialTab) ? initialTab : "account",
+    );
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [displayName, setDisplayName] = useState("");
+
+    useEffect(() => {
+        const tab = searchParams.get("tab");
+        if (tab && sidebarItems.some((i) => i.id === tab)) {
+            setActiveTab(tab);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         if (user) {
@@ -104,12 +94,9 @@ export default function Settings() {
     };
 
     const handleTabClick = (itemId: string) => {
-        if (itemId === "tokens") {
-            router.push("/settings/tokens");
-        } else {
-            setActiveTab(itemId);
-            router.replace(`/settings?tab=${itemId}`);
-        }
+        setActiveTab(itemId);
+        const newUrl = itemId === "account" ? "/settings" : `/settings?tab=${itemId}`;
+        window.history.replaceState(null, "", newUrl);
     };
 
     return (
@@ -139,7 +126,7 @@ export default function Settings() {
                                 const ActiveIcon =
                                     sidebarItems.find((i) => i.id === activeTab)
                                         ?.icon || User;
-                                return <ActiveIcon className="h-4 w-4" />;
+                                return <ActiveIcon className="h-4 w-4 text-accent-emerald" />;
                             })()}
                             {
                                 sidebarItems.find((i) => i.id === activeTab)
@@ -167,7 +154,7 @@ export default function Settings() {
                                             setMobileSidebarOpen(false);
                                         }}
                                         className={cn(
-                                            "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                                            "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors cursor-pointer",
                                             isActive
                                                 ? "bg-bg-card/80 text-text-primary border border-white/10"
                                                 : "text-text-secondary hover:bg-bg-subtle hover:text-text-primary",
@@ -187,7 +174,7 @@ export default function Settings() {
                     {/* Left Sidebar - Hidden on mobile, visible on lg */}
                     <aside className="hidden lg:block w-48 shrink-0">
                         <nav className="space-y-0.5">
-                            {sidebarItems.map((item, index) => {
+                            {sidebarItems.map((item) => {
                                 const Icon = item.icon;
                                 const isActive = activeTab === item.id;
                                 return (
@@ -202,7 +189,7 @@ export default function Settings() {
                                         )}
                                     >
                                         {isActive && (
-                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-accent-mint rounded-full" />
+                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-accent-emerald rounded-full" />
                                         )}
                                         <Icon className="h-4 w-4" />
                                         {item.label}
@@ -215,7 +202,7 @@ export default function Settings() {
                     {/* Right Content Area */}
                     <div className="flex-1 space-y-6">
                         <AnimatePresence mode="wait">
-                            {userLoading ? (
+                            {userLoading && activeTab === "account" ? (
                                 <div key="loading" className="space-y-6">
                                     {/* Shimmer Loader for Account Information Card */}
                                     <div className="rounded-xl border border-white/10 bg-bg-card/30 p-4 sm:p-6">
@@ -276,8 +263,7 @@ export default function Settings() {
                                                 Account Information
                                             </h2>
                                             <p className="text-sm text-text-secondary mt-0.5">
-                                                Update your personal profile
-                                                details.
+                                                Update your personal profile details.
                                             </p>
                                         </div>
 
@@ -295,10 +281,7 @@ export default function Settings() {
                                                 ) : null}
                                                 <AvatarFallback className="bg-bg-subtle text-text-secondary text-lg uppercase">
                                                     {user?.name
-                                                        ? user.name.substring(
-                                                              0,
-                                                              2,
-                                                          )
+                                                        ? user.name.substring(0, 2)
                                                         : "UN"}
                                                 </AvatarFallback>
                                             </Avatar>
@@ -326,9 +309,7 @@ export default function Settings() {
                                                         id="displayName"
                                                         value={displayName}
                                                         onChange={(e) =>
-                                                            setDisplayName(
-                                                                e.target.value,
-                                                            )
+                                                            setDisplayName(e.target.value)
                                                         }
                                                         className="bg-bg-subtle border-white/10 text-text-primary placeholder:text-text-muted focus-visible:ring-accent-emerald"
                                                     />
@@ -344,15 +325,11 @@ export default function Settings() {
                                                         id="email"
                                                         type="email"
                                                         disabled
-                                                        value={
-                                                            user?.email || ""
-                                                        }
+                                                        value={user?.email || ""}
                                                         className="bg-bg-card/40 border-white/10 text-text-muted cursor-not-allowed"
                                                     />
                                                     <p className="text-[11px] text-text-muted">
-                                                        Email is managed by your
-                                                        Clerk authentication
-                                                        session.
+                                                        Email is managed by your Clerk authentication session.
                                                     </p>
                                                 </div>
                                             </div>
@@ -385,112 +362,6 @@ export default function Settings() {
                                         </div>
                                     </div>
 
-                                    {/* API Tokens Card */}
-                                    {/* <div className="rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-4 sm:p-6">
-                                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                                            <div>
-                                                <h2 className="text-base sm:text-lg font-medium text-white tracking-tight">
-                                                    API Tokens
-                                                </h2>
-                                                <p className="text-sm text-zinc-400 mt-0.5">
-                                                    Manage tokens for
-                                                    programmatic access to
-                                                    Enver.
-                                                </p>
-                                            </div>
-                                            <Button className="bg-blue-600 hover:bg-blue-500 text-white gap-2 w-full sm:w-auto justify-center cursor-pointer">
-                                                <Plus className="h-4 w-4" />
-                                                <span className="hidden sm:inline">
-                                                    Create Token
-                                                </span>
-                                                <span className="sm:hidden">
-                                                    Create
-                                                </span>
-                                            </Button>
-                                        </div>
-
-                                        <div className="block sm:hidden space-y-3">
-                                            {tokens.map((token) => (
-                                                <div
-                                                    key={token.id}
-                                                    className="flex items-center justify-between rounded-lg border border-zinc-800/50 bg-zinc-900/50 p-3"
-                                                >
-                                                    <div className="flex items-center gap-2 min-w-0">
-                                                        <Key className="h-4 w-4 text-zinc-500 shrink-0" />
-                                                        <code className="text-sm font-mono text-zinc-300 truncate">
-                                                            {token.name}
-                                                        </code>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 ml-2">
-                                                        <span className="text-xs text-zinc-500 whitespace-nowrap">
-                                                            {token.lastUsed}
-                                                        </span>
-                                                        <Button
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            className="h-7 w-7 text-zinc-500 hover:text-red-400 hover:bg-red-950/20 shrink-0 cursor-pointer"
-                                                        >
-                                                            <Trash2 className="h-3.5 w-3.5" />
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className="hidden sm:block rounded-lg border border-zinc-800/50 overflow-hidden">
-                                            <Table>
-                                                <TableHeader>
-                                                    <TableRow className="border-b border-zinc-800/50 hover:bg-transparent bg-zinc-900/50">
-                                                        <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider">
-                                                            TOKEN NAME
-                                                        </TableHead>
-                                                        <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider">
-                                                            LAST USED
-                                                        </TableHead>
-                                                        <TableHead className="text-zinc-400 font-medium text-xs uppercase tracking-wider text-right">
-                                                            ACTIONS
-                                                        </TableHead>
-                                                    </TableRow>
-                                                </TableHeader>
-                                                <TableBody>
-                                                    {tokens.map((token) => (
-                                                        <TableRow
-                                                            key={token.id}
-                                                            className="border-b border-zinc-800/30 hover:bg-zinc-800/20"
-                                                        >
-                                                            <TableCell>
-                                                                <div className="flex items-center gap-2">
-                                                                    <Key className="h-4 w-4 text-zinc-500" />
-                                                                    <code className="text-sm font-mono text-zinc-300">
-                                                                        {
-                                                                            token.name
-                                                                        }
-                                                                    </code>
-                                                                </div>
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                <span className="text-sm text-zinc-400">
-                                                                    {
-                                                                        token.lastUsed
-                                                                    }
-                                                                </span>
-                                                            </TableCell>
-                                                            <TableCell className="text-right">
-                                                                <Button
-                                                                    variant="ghost"
-                                                                    size="icon"
-                                                                    className="h-8 w-8 text-zinc-500 hover:text-red-400 hover:bg-red-950/20 cursor-pointer"
-                                                                >
-                                                                    <Trash2 className="h-4 w-4" />
-                                                                </Button>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </div>
-                                    </div> */}
-
                                     {/* Danger Zone Card */}
                                     <div className="rounded-xl border border-red-900/40 bg-red-950/10 p-4 sm:p-6">
                                         <div className="flex flex-col sm:flex-row sm:items-start gap-4">
@@ -502,10 +373,7 @@ export default function Settings() {
                                                     Danger Zone
                                                 </h2>
                                                 <p className="text-xs text-red-300/70 mt-0.5">
-                                                    Permanently delete your
-                                                    account and all associated
-                                                    secrets. This action cannot
-                                                    be undone.
+                                                    Permanently delete your account and all associated secrets. This action cannot be undone.
                                                 </p>
                                             </div>
                                             <Button
@@ -516,6 +384,10 @@ export default function Settings() {
                                             </Button>
                                         </div>
                                     </div>
+                                </div>
+                            ) : activeTab === "tokens" ? (
+                                <div key="tokens">
+                                    <TokensTab />
                                 </div>
                             ) : activeTab === "billing" ? (
                                 <div
@@ -529,8 +401,7 @@ export default function Settings() {
                                         Billing Plan
                                     </h3>
                                     <p className="text-text-secondary text-sm max-w-sm mt-2 font-medium">
-                                        Enver is currently free, until premium
-                                        features are shipped.
+                                        Enver is currently free, until premium features are shipped.
                                     </p>
                                 </div>
                             ) : activeTab === "team" ? (
@@ -560,8 +431,7 @@ export default function Settings() {
                                         Security Settings
                                     </h3>
                                     <p className="text-text-muted text-sm max-w-sm mt-2">
-                                        Security configuration settings will be
-                                        customizable soon.
+                                        Security configuration settings will be customizable soon.
                                     </p>
                                 </div>
                             )}
@@ -570,5 +440,13 @@ export default function Settings() {
                 </div>
             </main>
         </div>
+    );
+}
+
+export default function Settings() {
+    return (
+        <Suspense fallback={null}>
+            <SettingsContent />
+        </Suspense>
     );
 }
